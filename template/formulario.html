@@ -1,101 +1,94 @@
-<html>
-
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="utf-8">
+
   <title>Compartir Código</title>
-  <meta content="">
-  <script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
-  <script type="text/javascript" src="/static/django_tinymce/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="/static/django_tinymce/init_tinymce.js"></script>
 
   <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+  </link>
+  </link>
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap3-wysihtml5.css">
+  </link>
 
-  <script src="/static/jquery.min.js"></script>
-  <script src="/static/bootstrap.min.js"></script>
+  <style type="text/css" media="screen">
+    .btn.jumbo {
+      font-size: 10px;
+      font-weight: normal;
+      padding: 14px 24px;
+      margin-right: 10px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+    }
+  </style>
 
-
-
-<style>
-.alert {
-  margin-bottom: 1px;
-  height: 30px;
-  line-height:30px;
-  padding:0px 15px;
-}
-</style>
-
-
-
-  <script type="text/javascript">
-    tinyMCE.init({
-      mode: "textareas"
-    });
-  </script>
 </head>
 
-<body>
+
+
+
+<div class="container">
+
+
+  <br>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-dark" role="alert">
+    <button class="close" data-dismiss="alert">&times;</button>
+    <small>{{ message }}</small>
+  </div>
+  {% endfor %}
+  {% endif %}
+  <br>
 
 
 
 
-  <div class="container">
+  <form action="" method="POST"> {% csrf_token %}
 
-    <br>
-    {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-dark" role="alert">
-          <button class="close" data-dismiss="alert">&times;</button>
-        <small>{{ message }}</small> 
-      </div>
-      {% endfor %}
-    {% endif %}
-    <br>
-
-
-
-
-
-    <form action="" method="POST"> {% csrf_token %}
-      <div class="row">
-
+    <div class="row">
       <div class="col-md-4">
-        <small> {{f.nombre.label}}:</small>
-        <br>{{f.nombre}} <br>
+        <small> {{f.nombre.label}}</small>
+        {{f.nombre}}
       </div>
-      </div>
-
-      <div class="row">
+    </div>
+    <br>
+    <div class="row">
       <div class="col-md-12">
-          <small>{{f.codigo.label}}:</small>
-        <br>{{f.codigo}} <br>
+        <small>{{f.codigo.label}}</small>
+        {{f.codigo}}
       </div>
-      </div>
-
-
-
-      <div class="row">
-          <div class="col-2">
-              <small>Expiración:</small>
-              <br>{{f.expiracion}}
-            </div>
-      </div>
-
-      <br>
-      <br>
-      <div class="row">
+    </div>
+    <br>
+    <div class="row">
       <div class="col-md-4">
-          <button type="submit" class="btn btn-dark"> <small><i class="fa fa-download"></i>
-            Insertar</small></button>
+        <small>{{f.expiracion.label}}</small>
+        {{f.expiracion}}
       </div>
-
     </div>
 
-    </form>
 
-  </div>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-dark btn-sm"> <small><i class="fa fa-download"></i>
+        Insertar</small></button>
 
 
+  </form>
+</div>
 
-</body>
+<script src="/static/wysihtml5x-toolbar.min.js"></script>
+<script src="/static/jquery.min.js"></script>
+<script src="/static/bootstrap.min.js"></script>
+<script src="/static/handlebars.runtime.min.js"></script>
+<script src="/static/bootstrap3-wysihtml5.min.js"></script>
 
-</html>
+<script>
+  $('.textarea').wysihtml5({
+    toolbar: {
+      fa: true
+    }
+  });
+</script>
